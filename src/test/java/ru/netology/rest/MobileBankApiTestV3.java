@@ -26,4 +26,25 @@ class MobileBankApiTestV3 {
                 .body("[0].balance", greaterThanOrEqualTo(0))
         ;
     }
+
+    @Test
+    void shouldBeTheCurrencyRUB() {
+        given()
+                .baseUri("http://localhost:9999/api/v1")
+                .when()
+                .get("/demo/accounts")
+                .then()
+                .body("[2].currency",equalTo("RUB"))
+                ;
+    }
+    @Test
+    void shouldBeTheCurrencyUSD(){
+        given()
+                .baseUri("http://localhost:9999/api/v1")
+                .when()
+                .get("/demo/accounts")
+                .then()
+                .body("[1].currency", equalTo("USD"))
+                ;
+    }
 }
